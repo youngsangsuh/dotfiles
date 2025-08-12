@@ -16,6 +16,10 @@ return {
       filtered_items = {
         visible = true,
       },
+      follow_current_file = {
+        enabled = true,   -- automatically reveal the file
+        leave_dirs_open = true,
+      },
     },
   },
 }

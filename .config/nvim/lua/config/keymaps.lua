@@ -18,3 +18,6 @@ mapKey('<leader>h', ':nohlsearch<CR>')
 -- indent
 mapKey('<', '<gv', 'v')
 mapKey('>', '>gv', 'v')
+
+-- bufferline
+mapKey('<leader>bl', ':BufferLinePick<CR>')

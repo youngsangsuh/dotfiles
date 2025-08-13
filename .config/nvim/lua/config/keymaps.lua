@@ -21,3 +21,7 @@ mapKey('>', '>gv', 'v')
 
 -- bufferline
 mapKey('<leader>bl', ':BufferLinePick<CR>')
+
+-- custom
+mapKey('<C-v>', '<Esc><C-v>', 'i')
+mapKey('d', '"_d', 'v')

@@ -26,3 +26,5 @@ opt.cmdheight = 1
 opt.scrolloff = 10
 opt.mouse:append("a")
 opt.clipboard = 'unnamedplus'
+opt.cursorline = true
+opt.cursorcolumn = true

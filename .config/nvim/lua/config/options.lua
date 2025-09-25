@@ -18,7 +18,7 @@ opt.number = true
 opt.relativenumber = true
 opt.termguicolors = true
 opt.signcolumn = "yes"
-opt.background = "light"
+opt.background = "dark"
 
 -- etc
 opt.encoding = "UTF-8"

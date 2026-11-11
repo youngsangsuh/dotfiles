@@ -16,8 +16,11 @@ vim.api.nvim_create_autocmd("PackChanged", {
 
 -- Load order matters: colorscheme first, dependencies before dependents.
 require("plugins.solarized-osaka")
+require("plugins.snacks") -- early: its notifier should catch startup notifications
 require("plugins.nvim-web-devicons")
 require("plugins.nvim-treesitter")
+require("plugins.lsp")
+require("plugins.format")
 require("plugins.gitsigns")
 require("plugins.nvim-scrollbar")
 require("plugins.indent-blankline")

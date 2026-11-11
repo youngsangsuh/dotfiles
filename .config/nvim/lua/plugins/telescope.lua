@@ -2,7 +2,7 @@ local mapKey = require("utils.keyMapper").mapKey
 
 vim.pack.add({
   { src = 'https://github.com/nvim-lua/plenary.nvim' },
-  { src = 'https://github.com/nvim-telescope/telescope.nvim', version = '0.1.8' },
+  { src = 'https://github.com/nvim-telescope/telescope.nvim', version = vim.version.range('0.2') },
 })
 
 require("telescope").setup({

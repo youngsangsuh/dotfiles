@@ -15,7 +15,7 @@ vim.api.nvim_create_autocmd("PackChanged", {
 })
 
 -- Load order matters: colorscheme first, dependencies before dependents.
-require("plugins.gruvbox")
+require("plugins.solarized-osaka")
 require("plugins.nvim-web-devicons")
 require("plugins.nvim-treesitter")
 require("plugins.gitsigns")

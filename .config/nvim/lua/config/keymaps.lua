@@ -46,3 +46,16 @@ mapKey('x', '"_x')                         -- delete char without copying
 mapKey('<leader>d', '"_d', { 'n', 'v' })   -- delete (e.g. <leader>dd, <leader>dw)
 mapKey('<leader>c', '"_c', { 'n', 'v' })   -- change (e.g. <leader>cw)
 mapKey('<leader>p', '"_dP', 'x')           -- paste over selection, keep yank
+
+-- copy file path + line (e.g. lua/config/options.lua#L12), handy for agent prompts
+local function copy_path(modifier)
+  local name = vim.api.nvim_buf_get_name(0)
+  if name == '' or vim.bo.buftype ~= '' then
+    return vim.notify('No file in this buffer', vim.log.levels.WARN)
+  end
+  local text = vim.fn.fnamemodify(name, modifier) .. '#L' .. vim.fn.line('.')
+  vim.fn.setreg('+', text)
+  vim.notify('Copied: ' .. text)
+end
+mapKey('<leader>yf', function() copy_path(':.') end) -- relative to cwd
+mapKey('<leader>yp', function() copy_path(':p') end) -- absolute

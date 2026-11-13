@@ -1,0 +1,46 @@
+# lazygit config. Opened from Neovim (;g), snacks.nvim loads this file together
+# with its generated theme file (colors synced with the Neovim colorscheme).
+
+gui:
+  mouseEvents: false
+
+git:
+  autoFetch: false
+  diffRenderers:
+    - command: 'delta --dark --paging=never --syntax-theme="Solarized (dark)"'
+
+# Pressing `e` on a file:
+#   inside Neovim ($NVIM is set): quit lazygit, focus the window ;g was pressed
+#   in, then open the file there with --remote (cursor ends up in the file).
+#   outside Neovim: just `nvim <file>`.
+# POSIX sh syntax: lazygit runs these with $SHELL (zsh here).
+os:
+  # true: standalone lazygit suspends itself so `nvim <file>` gets the terminal.
+  # Inside Neovim, snacks.nvim overrides this to false (plugins/snacks.lua): the
+  # remote commands return immediately, so lazygit must not suspend.
+  editInTerminal: true
+  edit: |-
+    if [ -z "$NVIM" ]; then
+      nvim -- {{filename}}
+    else
+      nvim --server "$NVIM" --remote-send 'q'
+      nvim --server "$NVIM" --remote-send '<C-\><C-n><Cmd>lua require("utils.lazygit").focus_origin()<CR>'
+      nvim --server "$NVIM" --remote {{filename}}
+    fi
+  editAtLine: |-
+    if [ -z "$NVIM" ]; then
+      nvim +{{line}} -- {{filename}}
+    else
+      nvim --server "$NVIM" --remote-send 'q'
+      nvim --server "$NVIM" --remote-send '<C-\><C-n><Cmd>lua require("utils.lazygit").focus_origin()<CR>'
+      nvim --server "$NVIM" --remote {{filename}}
+      nvim --server "$NVIM" --remote-send '<Cmd>{{line}}<CR>'
+    fi
+
+customCommands:
+  # C in the files panel: commit with commitizen
+  - key: C
+    context: files
+    command: git cz
+    output: terminal
+    description: Commit with commitizen (git cz)
